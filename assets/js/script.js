@@ -1,7 +1,6 @@
 "use strict";
 
 // modal variables
-const modal = document.querySelector("[data-modal]");
 const modalCloseBtn = document.querySelector("[data-modal-close]");
 const modalCloseOverlay = document.querySelector("[data-modal-overlay]");
 
@@ -73,16 +72,83 @@ function changeBannerImages() {
 
     // Show the next slider item
     sliderItems[activeIndex].classList.add("active");
-  }, 5000);
+  }, 10000);
 }
+
 window.onload = function () {
   changeBannerImages();
 };
+
 function togglePopup() {
   var popup = document.getElementById("popup");
   popup.style.display = popup.style.display === "none" ? "block" : "none";
-
 }
 var submitform = document.getElementById("submit");
-submitform.addEventListener("click",()=>{  var popup = document.getElementById("Successful");
-popup.style.display = popup.style.display === "none" ? "block" : "none";})
+submitform.addEventListener("click", () => {
+  var popup = document.getElementById("Successful");
+  popup.style.display = popup.style.display === "none" ? "block" : "none";
+});
+function updatePrice() {
+  const quantityInput = document.getElementById("quantity");
+  const price = 1000; // Default price
+  let quantity = parseInt(quantityInput.value);
+  let totalPrice = price * quantity;
+
+  // Update the price display
+  quantityInput.textContent = quantity;
+  document.getElementById("price").textContent = totalPrice;
+}
+
+function increaseQuantity() {
+  const quantityInput = document.getElementById("quantity");
+  let quantity = parseInt(quantityInput.value);
+  quantityInput.value = quantity + 1;
+  updatePrice();
+}
+
+function decreaseQuantity() {
+  const quantityInput = document.getElementById("quantity");
+  let quantity = parseInt(quantityInput.value);
+  if (quantity > 1) {
+    quantityInput.value = quantity - 1;
+    updatePrice();
+  }
+}
+const modal = document.getElementById("modal");
+
+function submitForm(event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Get form inputs
+  const food = document.getElementById("food").value;
+  const quantity = document.getElementById("quantity").value;
+  const water = document.querySelector('input[name="water"]:checked').value;
+  const swallowType = document.querySelector(
+    'input[name="swallow-type"]:checked'
+  ).value;
+  const paymentMethod = document.querySelector(
+    'input[name="payment-method"]:checked'
+  ).value;
+
+  // Set modal content
+  document.getElementById("food-summary").textContent = `Food: ${food}`;
+  document.getElementById(
+    "quantity-summary"
+  ).innerHTML = `Quantity: ${quantity}`;
+  document.getElementById("water-summary").textContent = `Water: ${water}`;
+  document.getElementById(
+    "swallow-summary"
+  ).textContent = `Swallow Type: ${swallowType}`;
+  document.getElementById(
+    "payment-summary"
+  ).textContent = `Payment Method: ${paymentMethod}`;
+
+  // Display the modal
+  modal.style.display = "block";
+}
+
+// Add an event listener to the form submit event
+document.getElementById("submit").addEventListener("click", submitForm);
+function sub() {
+  modal.style.display = "block" ? "none" : "block";
+}
