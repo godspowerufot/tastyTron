@@ -115,7 +115,6 @@ function decreaseQuantity() {
   }
 }
 const modal = document.getElementById("modal");
-
 function submitForm(event) {
   event.preventDefault(); // Prevent form submission
 
@@ -123,12 +122,23 @@ function submitForm(event) {
   const food = document.getElementById("food").value;
   const quantity = document.getElementById("quantity").value;
   const water = document.querySelector('input[name="water"]:checked').value;
-  const swallowType = document.querySelector(
+  const swallowType = document.querySelectorAll(
     'input[name="swallow-type"]:checked'
-  ).value;
+  );
+  let swallowSummary = "";
+  for (let i = 0; i < swallowType.length; i++) {
+    swallowSummary += swallowType[i].value + ", ";
+  }
   const paymentMethod = document.querySelector(
     'input[name="payment-method"]:checked'
   ).value;
+
+  // Get Extra selection
+  const extra = [];
+  const extraInputs = document.querySelectorAll('input[name="extra"]:checked');
+  extraInputs.forEach((input) => {
+    extra.push(input.value);
+  });
 
   // Set modal content
   document.getElementById("food-summary").textContent = `Food: ${food}`;
@@ -138,7 +148,10 @@ function submitForm(event) {
   document.getElementById("water-summary").textContent = `Water: ${water}`;
   document.getElementById(
     "swallow-summary"
-  ).textContent = `Swallow Type: ${swallowType}`;
+  ).textContent = `Swallow Type: ${swallowSummary.slice(0, -2)}`;
+  document.getElementById("extra-summary").textContent = `Extra: ${extra.join(
+    ", "
+  )}`;
   document.getElementById(
     "payment-summary"
   ).textContent = `Payment Method: ${paymentMethod}`;
@@ -149,6 +162,7 @@ function submitForm(event) {
 
 // Add an event listener to the form submit event
 document.getElementById("submit").addEventListener("click", submitForm);
+
 function sub() {
   modal.style.display = "block" ? "none" : "block";
 }

@@ -246,7 +246,6 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 #print-button {
-  margin-top: 20px;
   padding: 10px 20px;
   background-color: #4caf50;
   color: #fff;
@@ -312,7 +311,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .btn {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
 }

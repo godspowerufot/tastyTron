@@ -1521,6 +1521,15 @@
           <input type="radio" id="water-no" name="water" value="no">
           <label for="water-no">No</label>
         </div>
+        <label>extra:</label>
+        <div class="radio-container">
+          <input type="checkbox" id="extra" name="extra" value="Garri">
+<label for="swallow-type2">Garri</label>
+
+          <input type="checkbox" id="extra" name="extra" value="Soup">
+<label for="swallow-type3">Soup</label>
+
+        </div>
         
         <label>Swallow:</label>
         <div class="radio-container">
@@ -1550,19 +1559,25 @@
      <!-- modal for check out -->
 <div id="modal" class="modal">
   <div class="modal-content">
-    <div class="headerorder">   <h2>Order Summary</h2>
-  <span onclick="sub()" style="cursor: pointer; padding-left: 100px;">
-          <i class="material-icons">close</i>
-        </span></div>
-  
+    <div class="headerorder">
+      <h2>Order Summary</h2>
+      <span onclick="sub()" style="cursor: pointer; padding-left: 100px;">
+        <i class="material-icons">close</i>
+      </span>
+    </div>
+
     <p id="food-summary"></p>
     <p id="quantity-summary"></p>
     <p id="water-summary"></p>
     <p id="swallow-summary"></p>
+    <p id="extra-summary"></p> <!-- Add a new paragraph for the Extra section -->
     <p id="payment-summary"></p>
-    <div class="btn"><button class="order-button" type="submit"><i class="material-icons">shopping_cart</i> Order</button>
-  <button id="print-button">Print</button></div>
-    
+    <div class="btn">
+      <div class="order-button">
+        <i class="material-icons">shopping_cart</i>order
+      </div>
+      <div id="print-button">Print</div>
+    </div>
   </div>
 </div>
 
